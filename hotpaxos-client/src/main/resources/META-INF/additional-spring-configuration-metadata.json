@@ -1,0 +1,28 @@
+{
+  "properties": [
+    {
+      "name": "hotpaxos.instance.host-name",
+      "type": "java.lang.String",
+      "defaultValue": "localhost",
+      "description": "server socket host"
+    },
+    {
+      "name": "hotpaxos.instance.port",
+      "type": "java.lang.String",
+      "defaultValue": "9090",
+      "description": "server socket port"
+    }
+  ],
+  "hints": [
+    {
+      "name": "hotpaxos.instance.attr.keys",
+      "values": [
+        {
+          "value": "sample1"
+        },
+        {
+          "value": "sample2"
+        }
+      ]
+    }]
+}

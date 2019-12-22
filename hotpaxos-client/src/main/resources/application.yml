@@ -1,0 +1,7 @@
+hotpaxos:
+  instance:
+    host-name: 127.0.0.1
+    port: 8080
+    attr:
+      same1:  12
+      same2:  1432
