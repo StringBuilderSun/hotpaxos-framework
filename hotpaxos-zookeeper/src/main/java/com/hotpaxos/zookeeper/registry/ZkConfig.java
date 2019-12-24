@@ -42,4 +42,5 @@ public class ZkConfig {
      * 进入的根目录
      */
     private String nameSpace = "hotpaxos";
+
 }

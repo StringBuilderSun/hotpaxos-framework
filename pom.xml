@@ -4,48 +4,79 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
+        <module>hotpaxos-common</module>
         <module>hotpaxos-client</module>
         <module>hotpaxos-client-starter</module>
-        <module>hotpaxos-common</module>
-        <module>hotpaxos-netty</module>
-        <module>hotpaxos-zookeeper</module>
         <module>hotpaxos-server</module>
         <module>hotopaxos-server-starter</module>
+        <module>hotpaxos-netty</module>
+        <module>hotpaxos-zookeeper</module>
+        <module>hotpaxos-test</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.8.RELEASE</version>
     </parent>
-    <groupId>com-hotpaxos-framwork</groupId>
-    <artifactId>hotpaxos-base</artifactId>
+    <groupId>com-hotpaxos-framework</groupId>
+    <artifactId>hotpaxos-framework</artifactId>
     <version>0.0.1-SNAPSHOT</version>
- <properties>
-     <zookeeper-version>3.4.9</zookeeper-version>
-     <curator-recipes>4.1.0</curator-recipes>
-     <curator-framework-version>4.2.0</curator-framework-version>
-     <curator-x-discovery-version>4.2.0</curator-x-discovery-version>
- </properties>
+    <properties>
+        <zookeeper-version>3.4.9</zookeeper-version>
+        <curator-recipes>4.1.0</curator-recipes>
+        <curator-framework-version>4.2.0</curator-framework-version>
+        <curator-x-discovery-version>4.2.0</curator-x-discovery-version>
+        <version>2.0.8.RELEASE</version>
+    </properties>
     <dependencyManagement>
         <dependencies>
+            <!--<dependency>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-starter-logging</artifactId>-->
+                <!--<version>${version}</version>-->
+            <!--</dependency>-->
             <dependency>
-                <groupId>com-hotpaxos-framwork</groupId>
+                <groupId>com-hotpaxos-framework</groupId>
                 <artifactId>hotpaxos-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com-hotpaxos-framwork</groupId>
+                <groupId>com-hotpaxos-framework</groupId>
                 <artifactId>hotpaxos-client</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com-hotpaxos-framwork</groupId>
+                <groupId>com-hotpaxos-framework</groupId>
                 <artifactId>hotpaxos-client-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com-hotpaxos-framework</groupId>
+                <artifactId>hotpaxos-server</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com-hotpaxos-framework</groupId>
+                <artifactId>hotopaxos-server-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com-hotpaxos-framework</groupId>
+                <artifactId>hotpaxos-netty</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com-hotpaxos-framework</groupId>
+                <artifactId>hotpaxos-zookeeper</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -71,15 +102,113 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--log-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <!--logback-->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
     </dependencies>
-
     <build>
         <plugins>
+            <!--<plugin>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<mainClass>com.hotpaxos.SpringBootMain</mainClass>-->
+                    <!--&lt;!&ndash;<classifier>exec</classifier>&ndash;&gt;-->
+                <!--</configuration>-->
+            <!--</plugin>-->
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <compilerVersion>1.8</compilerVersion>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
+                </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
 </project>

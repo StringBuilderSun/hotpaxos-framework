@@ -1,0 +1,4 @@
+hotpaxos:
+  zk:
+    instance:
+      hosts: 192.168.164.50

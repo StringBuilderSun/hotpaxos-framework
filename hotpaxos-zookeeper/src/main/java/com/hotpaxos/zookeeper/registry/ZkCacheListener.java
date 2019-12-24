@@ -13,7 +13,7 @@ import org.apache.curator.framework.recipes.cache.TreeCacheListener;
  * User: lijinpeng
  * Created by Shanghai on 2019/12/22.
  */
-@Slf4j
+//@Slf4j
 public class ZkCacheListener implements TreeCacheListener {
 
     private ServiceNodeListener serviceNodeListener;
@@ -42,7 +42,7 @@ public class ZkCacheListener implements TreeCacheListener {
                     serviceNodeListener.onServiceNodeUpdated(activePath, JSON.parseObject(childData.getData(), CommonServiceNode.class));
                     break;
             }
-            log.info("zk serviceNode channge:{} nodePath:{} watchUrl:{}", treeCacheEvent.getType(), activePath, watchUrl);
+//            log.info("zk serviceNode channge:{} nodePath:{} watchUrl:{}", treeCacheEvent.getType(), activePath, watchUrl);
         }
     }
 }

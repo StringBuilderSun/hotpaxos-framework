@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>hotpaxos-framework</artifactId>
+        <groupId>com-hotpaxos-framework</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>hotpaxos-test</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com-hotpaxos-framework</groupId>
+            <artifactId>hotpaxos-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com-hotpaxos-framework</groupId>
+            <artifactId>hotpaxos-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com-hotpaxos-framework</groupId>
+            <artifactId>hotpaxos-client-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com-hotpaxos-framework</groupId>
+            <artifactId>hotpaxos-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com-hotpaxos-framework</groupId>
+            <artifactId>hotopaxos-server-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com-hotpaxos-framework</groupId>
+            <artifactId>hotpaxos-netty</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com-hotpaxos-framework</groupId>
+            <artifactId>hotpaxos-zookeeper</artifactId>
+        </dependency>
+    </dependencies>
+</project>

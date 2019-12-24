@@ -1,0 +1,57 @@
+{
+  "properties": [
+    {
+      "name": "hotpaxos.zk.instance.hosts",
+      "type": "java.lang.String",
+      "defaultValue": "localhost",
+      "description": "zk server host connectionning."
+    },
+    {
+      "name": "hotpaxos.zk.instance.digest",
+      "type": "java.lang.String",
+      "defaultValue": "",
+      "description": "zk server digest."
+    },
+    {
+      "name": "hotpaxos.zk.instance.max_retries",
+      "type": "java.lang.Integer",
+      "defaultValue": 3,
+      "description": "zk connect max retries."
+    },
+    {
+      "name": "hotpaxos.zk.instance.base_sleep_time_Ms",
+      "type": "java.lang.Integer",
+      "defaultValue": 5000,
+      "description": "zk connect baseSleepTimeMs."
+    },
+    {
+      "name": "hotpaxos.zk.instance.max_sleep_Ms",
+      "type": "java.lang.Integer",
+      "defaultValue": 5000,
+      "description": "zk connect maxSleepMs."
+    },
+    {
+      "name": "hotpaxos.zk.instance.session_time_out",
+      "type": "java.lang.Integer",
+      "defaultValue": 5000,
+      "description": "zk connect sessionTimeOut."
+    },
+    {
+      "name": "hotpaxos.zk.instance.connect_time_out",
+      "type": "java.lang.Integer",
+      "defaultValue": 5000,
+      "description": "zk connect max connectTimeOut."
+    },
+    {
+      "name": "hotpaxos.zk.instance.watch_path",
+      "type": "java.lang.String",
+      "defaultValue": "/",
+      "description": "zk watchPath."
+    },
+    {
+      "name": "hotpaxos.zk.instance.name_space",
+      "type": "java.lang.String",
+      "description": "zk  default  nameSpace."
+    }
+  ]
+}
