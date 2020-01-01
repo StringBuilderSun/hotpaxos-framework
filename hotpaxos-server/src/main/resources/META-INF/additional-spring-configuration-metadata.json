@@ -1,0 +1,62 @@
+{
+  "properties": [
+    {
+      "name": "hotpaxos.netty.server.receiveSize",
+      "type": "java.lang.Integer",
+      "defaultValue": 65535,
+      "description": "服务端允许接收的最大数据长度."
+    },
+    {
+      "name": "hotpaxos.netty.server.binds",
+      "type": "java.util.List",
+      "defaultValue": [
+        1810
+      ],
+      "description": "服务端绑定端口号."
+    },
+    {
+      "name": "hotpaxos.netty.server.work-threads",
+      "type": "java.lang.Integer",
+      "defaultValue": 4,
+      "description": "woker线程数."
+    },
+    {
+      "name": "hotpaxos.netty.server.boss-threads",
+      "type": "java.lang.Integer",
+      "defaultValue": 1,
+      "description": "boss线程数."
+    },
+    {
+      "name": "hotpaxos.netty.server.reader-idle-time-seconds",
+      "type": "java.lang.Integer",
+      "defaultValue": 60,
+      "description": "读操作空闲时间."
+    },
+    {
+      "name": "hotpaxos.netty.server.writer-idle-time-seconds",
+      "type": "java.lang.Integer",
+      "defaultValue": 30,
+      "description": "写操作空闲时间."
+    },
+    {
+      "name": "hotpaxos.netty.server.all-idle-time-seconds",
+      "type": "java.lang.Integer",
+      "defaultValue": 60,
+      "description": "读写操作空闲时间."
+    },
+    {
+      "name": "hotpaxos.netty.server.scopes",
+      "type": "java.util.List",
+      "defaultValue": [
+        "default"
+      ],
+      "description": "TSession作用域."
+    },
+    {
+      "name": "hotpaxos.netty.server.watch-url",
+      "type": "java.lang.String",
+      "defaultValue": "/client",
+      "description": "监听变化的节点路径."
+    }
+  ]
+}

@@ -37,7 +37,7 @@ public class ZkConfig {
     /**
      * 监控路径
      */
-    private String watchPath;
+    private String watchPath="/";
     /**
      * 进入的根目录
      */

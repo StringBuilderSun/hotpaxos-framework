@@ -10,8 +10,8 @@ import java.util.UUID;
  * User: lijinpeng
  * Created by Shanghai on 2019/12/22.
  */
-@Builder
 @AllArgsConstructor
+@Builder
 public class CommonServiceNode implements ServiceNode {
     private int appId;
     private String host;
@@ -19,6 +19,7 @@ public class CommonServiceNode implements ServiceNode {
     private String nodeId;
     private transient boolean persistent;
     private Map<String, Object> attrs;
+
 
     @Override
     public int getAppId() {

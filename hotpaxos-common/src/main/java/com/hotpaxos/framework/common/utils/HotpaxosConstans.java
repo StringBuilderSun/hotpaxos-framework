@@ -1,5 +1,7 @@
 package com.hotpaxos.framework.common.utils;
 
+import com.hotpaxos.framework.common.core.TSession;
+import io.netty.util.AttributeKey;
 import java.util.regex.Pattern;
 
 /**
@@ -25,5 +27,17 @@ public class HotpaxosConstans {
     public static final int SECOND_MILLS = 1000;
     public static final int MINUTE_MILLS = 60 * SECOND_MILLS;
     public static final int DEFAULT_VALUE = 0;
-    public static final String Empty= "";
+    public static final String Empty = "";
+    /**
+     * Tsession 的scope
+     */
+    public static final String DEFAULT_SCOPE = "default";
+    public static final String HAND_SHAKE_SCOPE = "hand-shake";
+    public static final String AGENT_SCOPE = "agent";
+    /**
+     * netty
+     */
+    public static final AttributeKey<Integer> TID_KEY = AttributeKey.valueOf("t-id");
+    public static final AttributeKey<Integer> RETRY_POLICY_KEY = AttributeKey.valueOf("retry_policy");
+    public static final AttributeKey<TSession> SESSION_ID = AttributeKey.valueOf("session_id");
 }

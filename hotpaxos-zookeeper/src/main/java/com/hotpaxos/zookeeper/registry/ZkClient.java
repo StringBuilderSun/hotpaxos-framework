@@ -31,7 +31,7 @@ import java.util.Map;
  * User: lijinpeng
  * Created by Shanghai on 2019/12/22.
  */
-//@Slf4j
+@Slf4j
 public class ZkClient implements DiscoveryClient<ZkClient.Cache> {
     private ZkClient.Cache zkCache;
     private CuratorFramework curatorClient;
@@ -79,7 +79,7 @@ public class ZkClient implements DiscoveryClient<ZkClient.Cache> {
         }
         curatorClient = builder.build();
         //zk客户端连接成功
-//        log.info("zk client init successful.....");
+        log.info("zk client init successful.....");
     }
 
     //初始化本地缓存
@@ -105,7 +105,7 @@ public class ZkClient implements DiscoveryClient<ZkClient.Cache> {
         if (started.compareAndSet(false, true)) {
             this.init();
             curatorClient.start();
-//            log.info("zk client is staring ,waiting to connection...");
+            log.info("zk client is staring ,waiting to connection...");
             //阻塞等待一分钟 直到服务端完成 established
             if (!curatorClient.blockUntilConnected(1, TimeUnit.MINUTES)) {
                 throw new ZkException("init zk error,zkConfig=" + zkConfig);
@@ -114,7 +114,7 @@ public class ZkClient implements DiscoveryClient<ZkClient.Cache> {
             this.zkCache = new Cache(curatorClient, treeCache);
             addConnectionStateListener();
             running.compareAndSet(false, true);
-//            log.info("zk client start success,server lists:{}", zkConfig.getHosts());
+            log.info("zk client start success,server lists:{}", zkConfig.getHosts());
         }
     }
 
@@ -132,7 +132,7 @@ public class ZkClient implements DiscoveryClient<ZkClient.Cache> {
         if (isStarted()) {
             curatorClient.close();
         }
-//        log.info("zk client closed...");
+        log.info("zk client closed...");
     }
 
     @Override
@@ -153,7 +153,7 @@ public class ZkClient implements DiscoveryClient<ZkClient.Cache> {
             try {
                 return new String(curatorClient.getData().forPath(key), Charset.forName("UTF-8"));
             } catch (Exception e) {
-//                log.error("zk getFromRemote error!key:{}", key, e);
+                log.error("zk getFromRemote error!key:{}", key, e);
             }
         }
         return null;
@@ -178,7 +178,7 @@ public class ZkClient implements DiscoveryClient<ZkClient.Cache> {
         try {
             return null != curatorClient.checkExists().forPath(key);
         } catch (Exception e) {
-//            log.error("zk check key isExisted error key:{}", key, e);
+            log.error("zk check key isExisted error key:{}", key, e);
         }
         return false;
     }
@@ -192,7 +192,7 @@ public class ZkClient implements DiscoveryClient<ZkClient.Cache> {
                     .and()
                     .commit();
         } catch (Exception e) {
-//            log.error("update zk node error！key:{} value:{}", key, value, e);
+            log.error("update zk node error！key:{} value:{}", key, value, e);
             throw new ZkException(e);
         }
     }
@@ -202,7 +202,7 @@ public class ZkClient implements DiscoveryClient<ZkClient.Cache> {
         try {
             curatorClient.delete().deletingChildrenIfNeeded().forPath(key);
         } catch (Exception e) {
-//            log.error("removeNode error!key:{}", key);
+            log.error("removeNode error!key:{}", key);
             throw new ZkException(e);
         }
     }
@@ -215,7 +215,7 @@ public class ZkClient implements DiscoveryClient<ZkClient.Cache> {
             try {
                 curatorClient.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(key, value.getBytes(Charset.forName("UTF-8")));
             } catch (Exception e) {
-//                log.error("registerPersistNode error,key:{} value:{}", key, value, e);
+                log.error("registerPersistNode error,key:{} value:{}", key, value, e);
                 throw new ZkException(e);
             }
         }
@@ -232,7 +232,7 @@ public class ZkClient implements DiscoveryClient<ZkClient.Cache> {
             curatorClient.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(key, value.getBytes(Charset.forName("UTF-8")));
             if (cache) ephemeralNodes.put(key, value);
         } catch (Exception e) {
-//            log.error("registerEphemeralNode error,key:{} value:{}", key, value);
+            log.error("registerEphemeralNode error,key:{} value:{}", key, value);
             throw new ZkException(e);
         }
     }
@@ -248,7 +248,7 @@ public class ZkClient implements DiscoveryClient<ZkClient.Cache> {
             curatorClient.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath(key, value.getBytes(Charset.forName("UTF-8")));
             if (cache) ephemeralSeqNodes.put(key, value);
         } catch (Exception e) {
-//            log.error("registerEphemeralNodeSequential error,key:{} value:{}", key, value);
+            log.error("registerEphemeralNodeSequential error,key:{} value:{}", key, value);
             throw new ZkException(e);
         }
     }

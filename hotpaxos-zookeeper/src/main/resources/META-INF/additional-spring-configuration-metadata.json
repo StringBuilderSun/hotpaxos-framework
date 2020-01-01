@@ -4,54 +4,54 @@
       "name": "hotpaxos.zk.instance.hosts",
       "type": "java.lang.String",
       "defaultValue": "localhost",
-      "description": "zk server host connectionning."
+      "description": "zookeeper连接串."
     },
     {
       "name": "hotpaxos.zk.instance.digest",
       "type": "java.lang.String",
       "defaultValue": "",
-      "description": "zk server digest."
+      "description": "zk校验."
     },
     {
       "name": "hotpaxos.zk.instance.max_retries",
       "type": "java.lang.Integer",
       "defaultValue": 3,
-      "description": "zk connect max retries."
+      "description": "最大重试次数."
     },
     {
       "name": "hotpaxos.zk.instance.base_sleep_time_Ms",
       "type": "java.lang.Integer",
       "defaultValue": 5000,
-      "description": "zk connect baseSleepTimeMs."
+      "description": "连接等待时间(毫秒)."
     },
     {
       "name": "hotpaxos.zk.instance.max_sleep_Ms",
       "type": "java.lang.Integer",
       "defaultValue": 5000,
-      "description": "zk connect maxSleepMs."
+      "description": "连接等待最大时间(毫秒)."
     },
     {
       "name": "hotpaxos.zk.instance.session_time_out",
       "type": "java.lang.Integer",
       "defaultValue": 5000,
-      "description": "zk connect sessionTimeOut."
+      "description": "连接超时时间(毫秒)."
     },
     {
       "name": "hotpaxos.zk.instance.connect_time_out",
       "type": "java.lang.Integer",
       "defaultValue": 5000,
-      "description": "zk connect max connectTimeOut."
+      "description": "最大连接超时时间(毫秒)."
     },
     {
       "name": "hotpaxos.zk.instance.watch_path",
       "type": "java.lang.String",
       "defaultValue": "/",
-      "description": "zk watchPath."
+      "description": "缓存节点监控路径."
     },
     {
       "name": "hotpaxos.zk.instance.name_space",
       "type": "java.lang.String",
-      "description": "zk  default  nameSpace."
+      "description": "默认命名空间."
     }
   ]
 }

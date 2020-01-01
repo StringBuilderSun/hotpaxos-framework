@@ -5,7 +5,7 @@ package com.hotpaxos.framework.common.utils;
  * Created by Shanghai on 2019/12/22.
  */
 public class AppIdUtils {
-    public static String loadAppId() {
-        return "1000";
+    public static int loadAppId() {
+        return 1000;
     }
 }

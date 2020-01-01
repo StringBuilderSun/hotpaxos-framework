@@ -12,6 +12,7 @@
     <artifactId>hotpaxos-common</artifactId>
     <properties>
         <alibaba.fastajson.version>1.2.60</alibaba.fastajson.version>
+        <io.netty.version>4.1.30.Final</io.netty.version>
     </properties>
     <dependencies>
         <dependency>
@@ -19,6 +20,9 @@
             <artifactId>fastjson</artifactId>
             <version>${alibaba.fastajson.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
     </dependencies>
 </project>

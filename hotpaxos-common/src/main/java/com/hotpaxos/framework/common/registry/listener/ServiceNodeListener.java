@@ -1,4 +1,6 @@
-package com.hotpaxos.framework.common.registry;
+package com.hotpaxos.framework.common.registry.listener;
+
+import com.hotpaxos.framework.common.registry.ServiceNode;
 
 /**
  * Zk节点监听
@@ -11,7 +13,7 @@ public interface ServiceNodeListener {
      * @param path
      * @param serviceNode
      */
-    void onServiceNodeCreated(String path,ServiceNode serviceNode);
+    void onServiceNodeCreated(String path, ServiceNode serviceNode);
 
     /**
      * zk 节点变化时候触发

@@ -12,6 +12,7 @@
         <module>hotpaxos-netty</module>
         <module>hotpaxos-zookeeper</module>
         <module>hotpaxos-test</module>
+        <module>com-hotpaxos-statistical</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -27,14 +28,21 @@
         <curator-framework-version>4.2.0</curator-framework-version>
         <curator-x-discovery-version>4.2.0</curator-x-discovery-version>
         <version>2.0.8.RELEASE</version>
+        <spring-test>5.0.12.RELEASE</spring-test>
+        <io.netty.version>4.1.30.Final</io.netty.version>
     </properties>
     <dependencyManagement>
         <dependencies>
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-starter-logging</artifactId>-->
-                <!--<version>${version}</version>-->
-            <!--</dependency>-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-logging</artifactId>
+                <version>${version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${version}</version>
+            </dependency>
             <dependency>
                 <groupId>com-hotpaxos-framework</groupId>
                 <artifactId>hotpaxos-common</artifactId>
@@ -48,6 +56,11 @@
             <dependency>
                 <groupId>com-hotpaxos-framework</groupId>
                 <artifactId>hotpaxos-client-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com-hotpaxos-framework</groupId>
+                <artifactId>com-hotpaxos-statistical</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -70,12 +83,39 @@
                 <artifactId>hotpaxos-zookeeper</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${io.netty.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-test</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring-test}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -102,48 +142,20 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--log-->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.25</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>log4j-over-slf4j</artifactId>
-            <version>1.7.25</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.7.25</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jul-to-slf4j</artifactId>
-            <version>1.7.25</version>
-        </dependency>
-        <!--logback-->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>1.2.3</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
     <build>
         <plugins>
             <!--<plugin>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-                <!--<configuration>-->
-                    <!--<mainClass>com.hotpaxos.SpringBootMain</mainClass>-->
-                    <!--&lt;!&ndash;<classifier>exec</classifier>&ndash;&gt;-->
-                <!--</configuration>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--<configuration>-->
+            <!--<mainClass>com.hotpaxos.SpringBootMain</mainClass>-->
+            <!--&lt;!&ndash;<classifier>exec</classifier>&ndash;&gt;-->
+            <!--</configuration>-->
             <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
