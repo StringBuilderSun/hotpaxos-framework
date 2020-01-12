@@ -1,7 +1,9 @@
 package com.hotpaxos.client.decoder;
 
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.hotpaxos.framework.common.core.HotpaxMessage;
 import com.hotpaxos.netty.AbstractMessageDecoder;
+import com.hotpaxos.pb.HotPaxMsg;
 import io.netty.buffer.ByteBuf;
 
 import java.io.UnsupportedEncodingException;
@@ -18,6 +20,12 @@ public class ClientMessageDecoder extends AbstractMessageDecoder {
         byte[] msgs = new byte[in.readableBytes()];
         in.readBytes(msgs);
         message.setContentBytes(msgs);
-        message.setContext(new String(message.getContentBytes(), "utf-8"));
+        //此时这个消息可能是ACK 后续还需改造
+        try {
+            HotPaxMsg.Syn syn = HotPaxMsg.Syn.parseFrom(msgs);
+            message.setContext(syn);
+        } catch (InvalidProtocolBufferException e) {
+            System.out.println("转换失败..." + e);
+        }
     }
 }

@@ -26,4 +26,5 @@ public class HotPaxosServerAutoConfig {
     public HandlerShakeAno handlerShakeAno() {
         return new HandlerShakeAno();
     }
+
 }

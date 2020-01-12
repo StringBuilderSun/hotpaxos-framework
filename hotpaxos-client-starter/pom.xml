@@ -15,6 +15,10 @@
         <groupId>com-hotpaxos-framework</groupId>
         <artifactId>hotpaxos-client</artifactId>
     </dependency>
+    <dependency>
+        <groupId>com.google.protobuf</groupId>
+        <artifactId>protobuf-java</artifactId>
+    </dependency>
 </dependencies>
 
 </project>

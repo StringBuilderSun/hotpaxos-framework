@@ -7,9 +7,8 @@ import com.hotpaxos.framework.common.registry.ServiceDiscovery;
 import com.hotpaxos.framework.common.registry.ServiceNodeRegistry;
 import com.hotpaxos.framework.common.registry.listener.DiscoveryServiceListener;
 import com.hotpaxos.framework.common.registry.listener.ServiceNodeListener;
-import com.hotpaxos.netty.HotPaxNettyApplicationContext;
 import com.hotpaxos.netty.dispather.DefaultActionDispatcher;
-import com.hotpaxos.netty.invoke.InvokerManager;
+import com.hotpaxos.netty.invoke.InvokerRegister;
 import com.hotpaxos.netty.parser.DefaultParser;
 import com.hotpaxos.server.HotPaxServerManager;
 import com.hotpaxos.statistical.StatisticalNode;
@@ -17,12 +16,7 @@ import com.hotpaxos.zookeeper.registry.ZkClient;
 import com.hotpaxos.zookeeper.registry.ZkConfig;
 import com.hotpaxos.zookeeper.registry.ZkServiceDiscovery;
 import com.hotpaxos.zookeeper.registry.ZkServiceNodeRegistry;
-import org.checkerframework.checker.units.qual.A;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -90,8 +84,8 @@ public class ServerAutoConfig {
 
     //消息处理器
     @Bean
-    public ActionDispatcher actionDispatcher(InvokerManager invokerManager) {
-        return new DefaultActionDispatcher(invokerManager);
+    public ActionDispatcher actionDispatcher() {
+        return new DefaultActionDispatcher();
     }
 
     //netty 服务端管理器 初始化配置连接等信息入口
@@ -110,14 +104,6 @@ public class ServerAutoConfig {
                 parser, node);
     }
 
-    @Bean
-    public HotPaxNettyApplicationContext hotPaxNettyApplicationContext(InvokerManager invokerManager) {
-        return new HotPaxNettyApplicationContext(invokerManager);
-    }
 
-    @Bean
-    public InvokerManager invokerManager() {
-        return new InvokerManager();
-    }
 
 }

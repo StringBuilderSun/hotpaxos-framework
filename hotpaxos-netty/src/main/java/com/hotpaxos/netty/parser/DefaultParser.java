@@ -21,8 +21,11 @@ public class DefaultParser implements Parser {
                 try {
                     HotpaxMessage message = (HotpaxMessage) obj;
                     //后续需要加Parser转换器 加入报文头 协议等信息
-                    message.setContentBytes(message.getContext().toString().getBytes());
-                    out.writeBytes(message.getContentBytes());
+                    if (message.getContentBytes() == null) {
+                        out.writeBytes(message.getContext().toString().getBytes());
+                    } else {
+                        out.writeBytes(message.getContentBytes());
+                    }
                 } catch (Exception ex) {
                     log.error("parser encode header and boyd error", ex);
                 }

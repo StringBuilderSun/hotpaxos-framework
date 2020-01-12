@@ -1,0 +1,18 @@
+syntax = "proto3";
+package com.hotpaxos.pb;
+option java_outer_classname = "HotPaxMsg";
+
+message Syn {
+    string message = 1;
+}
+
+message SynAck {
+    int32 addId = 1;
+    map<string, string> metaData = 2;
+    repeated string scope = 3;
+    int32 tid = 4;
+}
+
+message Ack {
+    int32 appid = 1;
+}

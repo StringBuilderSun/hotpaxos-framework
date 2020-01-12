@@ -9,7 +9,7 @@ import com.hotpaxos.framework.common.registry.ServiceNodeRegistry;
 import com.hotpaxos.framework.common.registry.listener.DiscoveryServiceListener;
 import com.hotpaxos.framework.common.registry.listener.ServiceNodeListener;
 import com.hotpaxos.netty.dispather.DefaultActionDispatcher;
-import com.hotpaxos.netty.invoke.InvokerManager;
+import com.hotpaxos.netty.invoke.InvokerRegister;
 import com.hotpaxos.netty.parser.DefaultParser;
 import com.hotpaxos.statistical.StaticNodeImpl;
 import com.hotpaxos.statistical.StatisticalNode;
@@ -17,9 +17,7 @@ import com.hotpaxos.zookeeper.registry.ZkClient;
 import com.hotpaxos.zookeeper.registry.ZkConfig;
 import com.hotpaxos.zookeeper.registry.ZkServiceDiscovery;
 import com.hotpaxos.zookeeper.registry.ZkServiceNodeRegistry;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -86,15 +84,11 @@ public class ClientAutoConfig {
     }
 
 
-    @Bean
-    public InvokerManager invokerManager() {
-        return new InvokerManager();
-    }
 
     //消息处理器
     @Bean
-    public ActionDispatcher actionDispatcher(InvokerManager invokerManager) {
-        return new DefaultActionDispatcher(invokerManager);
+    public ActionDispatcher actionDispatcher() {
+        return new DefaultActionDispatcher();
     }
 
     @Bean(initMethod = "start", destroyMethod = "shutdown")
