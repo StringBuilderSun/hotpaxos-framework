@@ -3,7 +3,9 @@ package com.hotpaxos.zookeeper.registry;
 import com.alibaba.fastjson.JSON;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.hotpaxos.framework.common.registry.CommonServiceNode;
+import com.hotpaxos.framework.common.registry.DiscoveryClient;
 import com.hotpaxos.framework.common.registry.ServiceDiscovery;
+import com.hotpaxos.framework.common.registry.ServiceNode;
 import com.hotpaxos.framework.common.registry.listener.ServiceNodeListener;
 import org.apache.curator.framework.recipes.cache.TreeCacheListener;
 import org.apache.curator.utils.ZKPaths;
@@ -16,16 +18,16 @@ import java.util.stream.Collectors;
 
 public class ZkServiceDiscovery implements ServiceDiscovery {
 
-    private ZkClient zkClient;
+    private DiscoveryClient<ZkClient.Cache> zkClient;
     //将监听器存入缓存中
     private Map<ServiceNodeListener, ZkCacheListener> listenerMap = new ConcurrentHashMap<>();
 
-    public ZkServiceDiscovery(ZkClient zkClient) {
+    public ZkServiceDiscovery(DiscoveryClient<ZkClient.Cache> zkClient) {
         this.zkClient = zkClient;
     }
 
     @Override
-    public List<CommonServiceNode> lookup(String path) {
+    public List<ServiceNode> lookup(String path) {
         List<String> childrenKeys = zkClient.getChildrenKeys(path);
         if (childrenKeys == null || childrenKeys.isEmpty()) {
             return Collections.emptyList();

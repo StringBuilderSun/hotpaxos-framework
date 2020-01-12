@@ -6,6 +6,6 @@ package com.hotpaxos.framework.common.utils;
  */
 public class AppIdUtils {
     public static int loadAppId() {
-        return 1000;
+        return 0;
     }
 }

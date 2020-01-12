@@ -3,6 +3,7 @@ package com.hotpaxos.netty.handler;
 import com.hotpaxos.framework.common.core.HotpaxMessage;
 import com.hotpaxos.framework.common.core.Parser;
 import com.hotpaxos.statistical.StatisticalNode;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
@@ -11,6 +12,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
  * User: lijinpeng
  * Created by Shanghai on 2020/1/1
  */
+@ChannelHandler.Sharable
 public class NioReadBodyHandler extends SimpleChannelInboundHandler<HotpaxMessage> {
     //解码器
     private Parser parser;

@@ -1,5 +1,6 @@
 package com.hotpaxos.netty.handler;
 
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleState;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
  * Created by Shanghai on 2020/1/1
  */
 @Slf4j
+@ChannelHandler.Sharable
 public class TcpServerIdleHandler extends ChannelInboundHandlerAdapter {
 
 

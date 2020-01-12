@@ -2,6 +2,7 @@ package com.hotpaxos.zookeeper.registry;
 
 import com.alibaba.fastjson.JSON;
 import com.hotpaxos.framework.common.registry.CommonServiceNode;
+import com.hotpaxos.framework.common.registry.DiscoveryClient;
 import com.hotpaxos.framework.common.registry.NodeType;
 import com.hotpaxos.framework.common.registry.ServiceNodeRegistry;
 import com.hotpaxos.framework.common.utils.PathUtils;
@@ -11,9 +12,9 @@ import com.hotpaxos.framework.common.utils.PathUtils;
  * Created by Shanghai on 2019/12/22.
  */
 public class ZkServiceNodeRegistry implements ServiceNodeRegistry {
-    private ZkClient zkClient;
+    private DiscoveryClient zkClient;
 
-    public ZkServiceNodeRegistry(ZkClient zkClient) {
+    public ZkServiceNodeRegistry(DiscoveryClient zkClient) {
         this.zkClient = zkClient;
     }
 

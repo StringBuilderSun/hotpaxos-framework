@@ -41,6 +41,7 @@ public abstract class HotPaxMananger implements Admin, ApplicationListener<Conte
         return !isStarted();
     }
 
+
     @Override
     public void start() {
         //开启zk服务
@@ -53,6 +54,10 @@ public abstract class HotPaxMananger implements Admin, ApplicationListener<Conte
         }
     }
 
+    @Override
+    public void shutdown() {
+
+    }
 
 
 }

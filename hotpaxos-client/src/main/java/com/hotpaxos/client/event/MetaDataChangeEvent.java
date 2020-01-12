@@ -1,6 +1,4 @@
 package com.hotpaxos.client.event;
-
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEvent;
 
 import java.util.Map;

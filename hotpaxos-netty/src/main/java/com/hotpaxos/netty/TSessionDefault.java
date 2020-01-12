@@ -8,12 +8,14 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
+import lombok.ToString;
 
 /**
  * netty信息传递默认实现
  * User: lijinpeng
  * Created by Shanghai on 2019/12/29
  */
+@ToString(callSuper = true)
 public class TSessionDefault extends TSession {
 
     private final StatisticalNode node;

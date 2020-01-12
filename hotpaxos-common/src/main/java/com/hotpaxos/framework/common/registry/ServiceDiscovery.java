@@ -14,7 +14,7 @@ public interface ServiceDiscovery {
      * @param path
      * @return
      */
-    List<CommonServiceNode> lookup(String path);
+    List<ServiceNode> lookup(String path);
 
     /**
      * 订阅监控该路径下节点变化时通知

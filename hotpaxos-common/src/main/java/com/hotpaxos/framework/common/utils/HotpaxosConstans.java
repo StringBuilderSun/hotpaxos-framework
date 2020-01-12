@@ -1,7 +1,9 @@
 package com.hotpaxos.framework.common.utils;
 
 import com.hotpaxos.framework.common.core.TSession;
+import com.hotpaxos.framework.common.core.retry.RetryPolicy;
 import io.netty.util.AttributeKey;
+
 import java.util.regex.Pattern;
 
 /**
@@ -28,6 +30,11 @@ public class HotpaxosConstans {
     public static final int MINUTE_MILLS = 60 * SECOND_MILLS;
     public static final int DEFAULT_VALUE = 0;
     public static final String Empty = "";
+
+    /**
+     * propertyChangeSupport name
+     */
+    public static final String RECONNECT_LISTENER_NAME = PATH_UNDERLINE + "reconnect";
     /**
      * Tsession 的scope
      */
@@ -38,6 +45,27 @@ public class HotpaxosConstans {
      * netty
      */
     public static final AttributeKey<Integer> TID_KEY = AttributeKey.valueOf("t-id");
-    public static final AttributeKey<Integer> RETRY_POLICY_KEY = AttributeKey.valueOf("retry_policy");
+    public static final AttributeKey<RetryPolicy> RETRY_POLICY_KEY = AttributeKey.valueOf("retry_policy");
     public static final AttributeKey<TSession> SESSION_ID = AttributeKey.valueOf("session_id");
+
+
+    /**
+     * ping  pong
+     */
+    /**
+     * ping messageId
+     */
+    public static final int PING_MESSAGE_ID = 100;
+    /**
+     * pong messageId
+     */
+    public static final int PONG_MESSAGE_ID = PING_MESSAGE_ID + 1;
+    /**
+     * syn messageId
+     */
+    public static final int SYN_MESSAGE_ID = PING_MESSAGE_ID + 2;
+    /**
+     * syn_ack messageId
+     */
+    public static final int SYN_ACK_MESSAGE_ID = PING_MESSAGE_ID + 3;
 }

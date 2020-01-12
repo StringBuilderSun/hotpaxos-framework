@@ -5,7 +5,7 @@ import com.hotpaxos.framework.common.core.Parser;
 import com.hotpaxos.netty.handler.DispatcherHandler;
 import com.hotpaxos.netty.handler.NioReadBodyHandler;
 import com.hotpaxos.netty.handler.TcpServerIdleHandler;
-import com.hotpaxos.server.config.HotPaxosServerProps;
+import com.hotpaxos.server.config.HotPaxServerProps;
 import com.hotpaxos.server.decoder.ServerMessageDecoder;
 import com.hotpaxos.statistical.StatisticalNode;
 import io.netty.bootstrap.ServerBootstrap;
@@ -37,12 +37,12 @@ public class TcpSeverBootStrap {
     private EventLoopGroup workerGroup;
     private EventLoopGroup bossGroup;
 
-    public TcpSeverBootStrap(HotPaxosServerProps hotPaxosServerProps, ActionDispatcher actionDispatcher, Parser parser, StatisticalNode node) {
+    public TcpSeverBootStrap(HotPaxServerProps hotPaxServerProps, ActionDispatcher actionDispatcher, Parser parser, StatisticalNode node) {
         this.tcpServerIdleHandler = new TcpServerIdleHandler();
         this.dispatcherHandler = new DispatcherHandler(parser, actionDispatcher, node);
         this.readBodyHandler = new NioReadBodyHandler(parser, node);
-        bossGroup = new NioEventLoopGroup(hotPaxosServerProps.getBossThreads());
-        workerGroup = new NioEventLoopGroup(hotPaxosServerProps.getWorkThreads());
+        bossGroup = new NioEventLoopGroup(hotPaxServerProps.getBossThreads());
+        workerGroup = new NioEventLoopGroup(hotPaxServerProps.getWorkThreads());
         server.group(bossGroup, workerGroup)
                 .channel(NioServerSocketChannel.class)
                 .option(ChannelOption.SO_REUSEADDR, true)
@@ -52,7 +52,7 @@ public class TcpSeverBootStrap {
                     protected void initChannel(SocketChannel ctx) throws Exception {
                         ChannelPipeline pipeline = ctx.pipeline();
                         //设置事件执行流程
-                        pipeline.addLast(new IdleStateHandler(hotPaxosServerProps.getReaderIdleTimeSeconds(), hotPaxosServerProps.getWriterIdleTimeSeconds(), hotPaxosServerProps.getAllIdleTimeSeconds()))
+                        pipeline.addLast(new IdleStateHandler(hotPaxServerProps.getReaderIdleTimeSeconds(), hotPaxServerProps.getWriterIdleTimeSeconds(), hotPaxServerProps.getAllIdleTimeSeconds()))
                                 .addLast(tcpServerIdleHandler)
                                 .addLast(new ServerMessageDecoder())
                                 .addLast(readBodyHandler)

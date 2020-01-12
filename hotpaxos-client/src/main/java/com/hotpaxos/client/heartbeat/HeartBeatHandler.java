@@ -1,5 +1,7 @@
 package com.hotpaxos.client.heartbeat;
 
+import com.hotpaxos.framework.common.exception.HotPaxosException;
+import com.hotpaxos.framework.common.utils.ChannelUtil;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -26,18 +28,29 @@ public class HeartBeatHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         super.channelActive(ctx);
+        ping(ctx.channel());
 
     }
 
     private void ping(Channel channel) {
-        //开启一个定时任务 ping服务端
+        //开启一个延迟执行任务 ping服务端
         ScheduledFuture<?> future = channel.eventLoop().schedule(() ->
-                        log.info("往服务端发送心跳  等待开发"),
+                {
+                    log.info("ping");
+                    if (channel.isActive()) {
+                        ChannelUtil.sendHeartPing(channel, true);
+                    } else {
+                        //客户端不活跃 可能连接断开  关闭当前通道
+                        log.warn("the connection may be broken,cancle the schedule task and send a heart beat.");
+                        channel.closeFuture();
+                        throw new HotPaxosException("the connection may be broken,cancle the schedule task and send a heart beat.");
+                    }
+                },
                 pingInterval, TimeUnit.SECONDS);
+        //心跳发送成功后 继续间隔时间发送
         future.addListener(f -> {
             if (f.isSuccess()) {
-                //发送ping消息
-                log.info("往服务器发送ping 等待开发");
+                ping(channel);
             }
         });
     }

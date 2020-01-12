@@ -15,7 +15,7 @@ public class DefaultParser implements Parser {
     @Override
     public ByteBuf write(Object obj) {
         //使用直接内存
-        ByteBuf out = PooledByteBufAllocator.DEFAULT.directBuffer();
+        ByteBuf out = PooledByteBufAllocator.DEFAULT.buffer();
         if (null != obj) {
             if (obj instanceof HotpaxMessage) {
                 try {

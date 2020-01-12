@@ -7,7 +7,7 @@ import com.hotpaxos.framework.common.registry.listener.ServiceNodeListener;
 import com.hotpaxos.framework.common.utils.AppIdUtils;
 import com.hotpaxos.framework.common.utils.NetIPUtil;
 import com.hotpaxos.netty.HotPaxMananger;
-import com.hotpaxos.server.config.HotPaxosServerProps;
+import com.hotpaxos.server.config.HotPaxServerProps;
 import com.hotpaxos.statistical.StatisticalNode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 public class HotPaxServerManager extends HotPaxMananger {
     //服务端配置属性 用于实例化netty服务端
-    private final HotPaxosServerProps hotPaxosServerProps;
+    private final HotPaxServerProps hotPaxServerProps;
     //netty服务端
     private final TcpSeverBootStrap severBootStrap;
     //节点注册服务 用于服务节点到zk的注册
@@ -37,18 +37,18 @@ public class HotPaxServerManager extends HotPaxMananger {
     private final ServiceNodeListener listener;
 
     public HotPaxServerManager(DiscoveryClient client,
-                               HotPaxosServerProps hotPaxosServerProps,
+                               HotPaxServerProps hotPaxServerProps,
                                ServiceNodeRegistry registry,
                                ServiceDiscovery discovery,
                                ServiceNodeListener listener,
                                ActionDispatcher dispatcher,
                                Parser parser, StatisticalNode node) {
         super(client);
-        this.hotPaxosServerProps = hotPaxosServerProps;
+        this.hotPaxServerProps = hotPaxServerProps;
         this.registry = registry;
         this.discovery = discovery;
         this.listener = listener;
-        this.severBootStrap = new TcpSeverBootStrap(hotPaxosServerProps, dispatcher, parser, node);
+        this.severBootStrap = new TcpSeverBootStrap(hotPaxServerProps, dispatcher, parser, node);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class HotPaxServerManager extends HotPaxMananger {
             return;
         }
         //开启netty服务端
-        for (int port : hotPaxosServerProps.getBinds()) {
+        for (int port : hotPaxServerProps.getBinds()) {
             severBootStrap.connect(port);
             //将服务节点注册到zk
             registerServiceNode(port);
@@ -68,7 +68,7 @@ public class HotPaxServerManager extends HotPaxMananger {
             log.info("监听到路径节点变化:registerUrl:{} serviceNode:{}  待后续扩展", registerUrl, serviceNode);
         });
         //当url变化时  会通知所有订阅了这个节点的监听器
-        discovery.subscribe(hotPaxosServerProps.getWatchUrl(), listener);
+        discovery.subscribe(hotPaxServerProps.getWatchUrl(), listener);
         log.info("netty server start......");
     }
 
@@ -93,7 +93,7 @@ public class HotPaxServerManager extends HotPaxMananger {
                 //从zk节点移除
                 registry.deregister(entry.getValue(), NodeType.AVALIABLE_SERVER);
                 //取消监听器订阅
-                discovery.unsubscribe(hotPaxosServerProps.getWatchUrl(), listener);
+                discovery.unsubscribe(hotPaxServerProps.getWatchUrl(), listener);
                 //关闭服务
                 severBootStrap.shutdown();
             }

@@ -60,7 +60,7 @@ public class HotPaxClientProps implements InitializingBean, ApplicationContextAw
     /**
      * 服务端appid
      */
-    private int serverAppId;
+    private int serverAppId=0;
     /**
      * 读空闲操作时间
      */
@@ -85,6 +85,8 @@ public class HotPaxClientProps implements InitializingBean, ApplicationContextAw
      * TSession的作用域
      */
     private List<String> scopes = new ArrayList<>();
+
+    private String watchUrl=ZK_CLIENT_CONNECT_PATH;
 
     @Override
     public void afterPropertiesSet() throws Exception {

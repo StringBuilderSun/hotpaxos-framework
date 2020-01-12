@@ -2,6 +2,7 @@ package com.hotpaxos.framework.common.utils;
 
 import com.hotpaxos.framework.common.registry.CommonServiceNode;
 import com.hotpaxos.framework.common.registry.NodeType;
+import io.netty.channel.Channel;
 
 
 /**
@@ -42,8 +43,8 @@ public class PathUtils {
         return nodePath.split(HotpaxosConstans.PATH_SEPARATOR);
     }
 
-//    public static String toReConnectName(Channel channel) {
-//        return channel.id().asLongText() + HotpaxosConstans.RECONNECT_LISTENER_NAME;
-//    }
+    public static String toReConnectName(Channel channel) {
+        return channel.id().asLongText() + HotpaxosConstans.RECONNECT_LISTENER_NAME;
+    }
 
 }

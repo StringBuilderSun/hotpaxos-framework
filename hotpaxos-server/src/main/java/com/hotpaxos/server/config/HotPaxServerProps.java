@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Data
 @ConfigurationProperties(prefix = "hotpaxos.server")
-public class HotPaxosServerProps {
+public class HotPaxServerProps {
     /**
      * 允许接收的最大数据长度
      */

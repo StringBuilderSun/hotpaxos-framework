@@ -44,6 +44,14 @@ public class CommonServiceNode implements ServiceNode {
         return (T) attrs.get(name);
     }
 
+    public void clearAttr() {
+        this.attrs.clear();
+    }
+
+    public void attr(String name, Object value) {
+        this.attrs.put(name, value);
+    }
+
     @Override
     public boolean isPersistent() {
         return persistent;

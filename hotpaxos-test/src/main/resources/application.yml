@@ -9,7 +9,7 @@ hotpaxos:
 
 logging:
   level:
-    com.hotpaxos.framework: debug
+    com.hotpaxos: debug
 
 
 
