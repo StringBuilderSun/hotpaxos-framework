@@ -11,7 +11,7 @@
 
     <artifactId>hotpaxos-common</artifactId>
     <properties>
-        <alibaba.fastajson.version>1.2.60</alibaba.fastajson.version>
+        <alibaba.fastajson.version>1.2.83</alibaba.fastajson.version>
         <io.netty.version>4.1.30.Final</io.netty.version>
     </properties>
     <dependencies>
